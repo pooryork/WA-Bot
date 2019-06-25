@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Вход</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/login.css" rel="stylesheet">
+  </head>
+  <div class="container" id="container">
+
+  <div class="form-container sign-up-container">
+    <form id="registerForm" method="post" name="register" action="/login">
+      <input name="type" type="hidden" value="register">
+      <h1>Создать аккаунт!</h1>
+      <input name="name" type="text" placeholder="Имя" />
+      <input name="email" type="email" placeholder="Email" />
+      <input name="password" type="password" placeholder="Пароль" />
+      <button id="registerBTN">Регистрация</button>
+    </form >
+  </div>
+
+  <div class="form-container sign-in-container">
+
+    <form id="loginForm" method="post" name = "login" action="/login">
+      <input name="type" type="hidden" value="login">
+      <h1>Вход</h1>
+      <input name="email" type="email" placeholder="Email" />
+      <input name="password" type="password" placeholder="Пароль" />
+      <button id="loginBTN">Вход</button>
+    </form>
+
+  </div>
+
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Добро пожаловать!</h1> <br>
+        <button class="ghost" id="signIn">Вход</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Привет, друг!</h1> <br>
+        <button class="ghost" id="signUp">Регистрация</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/login.js"> </script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $('#loginBTN').click(function(e) {
+        e.preventDefault();
+        submin("login");
+    });
+
+    $('#registerBTN').click(function(e) {
+        e.preventDefault();
+        submin("register");
+    });
+
+    function submin(type){
+        let data = {};
+        data.type = type;
+
+        switch (type) {
+
+            case "login":
+                data.email = $("#loginForm input[name='email']")[0].value;
+                data.password = $("#loginForm input[name='password']")[0].value;
+            break;
+
+            case "register":
+                data.name = $("#registerForm input[name='name']")[0].value;
+                data.email = $("#registerForm input[name='email']")[0].value;
+                data.password = $("#registerForm input[name='password']")[0].value;
+            break;
+
+            default:
+                return console.error({status:"error",error:{code:1,text:{eu:"Undefined event",ru:"Незвестное событие"}}});
+
+        }
+
+        $.ajax({
+            type: "POST",
+            url: '/login',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+        }).done(data => {
+            if(data.status == "ok")
+                location.href = data.response.redirect;
+            else
+                console.log(data);
+        });
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
