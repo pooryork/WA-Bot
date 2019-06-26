@@ -1,4 +1,5 @@
 function addBlockMenu(jQueryId,newId){
+
         $(jQueryId).append(jQuery('<div/>', {
             class: 'drag col-md-4',
             css: {
@@ -68,8 +69,6 @@ function addBlockMenu(jQueryId,newId){
                 })))
             )
         ))
-        let text = ("#menuName-blockMenu-0").val();
-        console.log("text", text);
 }
 
 

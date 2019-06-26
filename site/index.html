@@ -57,8 +57,8 @@
 
     </div>
 
-    <div class="save_bnt" id="save_btn">
-      <button class="btn btn-primary" type="submit">Сохранить настройки</button>
+    <div>
+      <button class="btn btn-primary" id="save_bnt" type="submit" onclick="go()">Сохранить настройки</button>
     </div>
 
     <ul class="navbar-nav my-2 my-lg-0">
@@ -289,6 +289,24 @@
   let info = {
 
   };
+
+  function go() {
+    var i;
+    //для блоков menuName
+    for (i = 0; i < blockCount; i++) {
+      var c1 = document.getElementById('menuName-blockMenu-'+i).value;
+      var c2 = document.getElementById('shluz-blockMenu-'+i).innerText;
+      console.log('menuName-blockMenu-'+i, ': ', c1);
+      console.log('shluz-blockMenu-'+i, ': ', c2);
+    }
+    for (i = 1; i <= countMenuItem; i++) {
+      var c1 = document.getElementById('item-menuItem-'+i).value;
+      var c2 = document.getElementById('addArrowBTN-menuItem-'+i).innerText;
+      console.log('item-menuItem-'+i, ': ', c1);
+      console.log('shluz-blockMenu-'+i, ': ', c2);
+    }
+
+  }
 
   console.log($("#menuName-blockMenu-0").val());
 
