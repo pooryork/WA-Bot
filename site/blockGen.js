@@ -15,6 +15,7 @@ function addBlockMenu(jQueryId,newId){
                 jQuery('<div/>', {
                     class: 'form-group',
                 }).append(jQuery('<textarea/>', {
+                    name: 'menu_name',
                     class: 'form-control',
                     id: 'menuName-'+newId,
                     rows: 1,
@@ -67,8 +68,11 @@ function addBlockMenu(jQueryId,newId){
                 })))
             )
         ))
-    
+        let text = ("#menuName-blockMenu-0").val();
+        console.log("text", text);
 }
+
+
 function addItemInMenu(jQueryId,newId) {
     $(jQueryId).append(jQuery('<div/>', {
         class: 'card border-dark mb-3',

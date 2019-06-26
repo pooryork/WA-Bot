@@ -54,8 +54,12 @@
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Статические слова</a>
       </div>
+
     </div>
 
+    <div class="save_bnt" id="save_btn">
+      <button class="btn btn-primary" type="submit">Сохранить настройки</button>
+    </div>
 
     <ul class="navbar-nav my-2 my-lg-0">
       <li class="nav-item">
@@ -98,6 +102,7 @@
   </div>
 </nav>
 <body>
+
 <div class = "row" id="main" style="width: 83.23%; height: 1000px">
 
   <!--<div class="row">
@@ -261,6 +266,7 @@
     </div>
 
   </div>-->
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -283,6 +289,8 @@
   let info = {
 
   };
+
+  console.log($("#menuName-blockMenu-0").val());
 
   function addBlock() {
     //получаем новый id
