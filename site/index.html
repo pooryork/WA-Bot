@@ -54,8 +54,12 @@
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Статические слова</a>
       </div>
+
     </div>
 
+    <div>
+      <button class="btn btn-primary" id="save_bnt" type="submit" onclick="go()">Сохранить настройки</button>
+    </div>
 
     <ul class="navbar-nav my-2 my-lg-0">
       <li class="nav-item">
@@ -98,6 +102,7 @@
   </div>
 </nav>
 <body>
+
 <div class = "row" id="main" style="width: 83.23%; height: 1000px">
 
   <!--<div class="row">
@@ -261,6 +266,7 @@
     </div>
 
   </div>-->
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -283,6 +289,26 @@
   let info = {
 
   };
+
+  function go() {
+    var i;
+    //для блоков menuName
+    for (i = 0; i < blockCount; i++) {
+      var c1 = document.getElementById('menuName-blockMenu-'+i).value;
+      var c2 = document.getElementById('shluz-blockMenu-'+i).innerText;
+      console.log('menuName-blockMenu-'+i, ': ', c1);
+      console.log('shluz-blockMenu-'+i, ': ', c2);
+    }
+    for (i = 1; i <= countMenuItem; i++) {
+      var c1 = document.getElementById('item-menuItem-'+i).value;
+      var c2 = document.getElementById('addArrowBTN-menuItem-'+i).innerText;
+      console.log('item-menuItem-'+i, ': ', c1);
+      console.log('shluz-blockMenu-'+i, ': ', c2);
+    }
+
+  }
+
+  console.log($("#menuName-blockMenu-0").val());
 
   function addBlock() {
     //получаем новый id
@@ -325,6 +351,7 @@
       ///Вешаем обработчик возможно пристыкавываетля
       $(`#addArrowBTN-menuItem-${countMenuItem}`).click(function (e) {
           docking = e.currentTarget.id;
+          console.log('hui');
       });
 
     });
