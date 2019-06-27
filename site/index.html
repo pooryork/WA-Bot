@@ -282,7 +282,7 @@
   let joins = [];
   let count = 0;
   let countMenuItem=0;
-  var gg;
+  let gg;
   let isClicked=0;
   let number=0;
   let countOfDeleted = 0;
@@ -291,28 +291,115 @@
   };
 
   function go() {
-    var i;
+    let i;
+    console.log(joins);
+    console.log(make(joins));
     //для блоков menuName
     for (i = 0; i < blockCount; i++) {
-      var c1 = document.getElementById('menuName-blockMenu-'+i).value;
-      var c2 = document.getElementById('shluz-blockMenu-'+i).innerText;
+      let c1 = document.getElementById('menuName-blockMenu-'+i).value;
+      let c2 = document.getElementById('shluz-blockMenu-'+i).innerText;
       console.log('menuName-blockMenu-'+i, ': ', c1);
       console.log('shluz-blockMenu-'+i, ': ', c2);
     }
     for (i = 1; i <= countMenuItem; i++) {
-      var c1 = document.getElementById('item-menuItem-'+i).value;
-      var c2 = document.getElementById('addArrowBTN-menuItem-'+i).innerText;
+      let c1 = document.getElementById('item-menuItem-'+i).value;
+      let c2 = document.getElementById('addArrowBTN-menuItem-'+i).innerText;
       console.log('item-menuItem-'+i, ': ', c1);
       console.log('shluz-blockMenu-'+i, ': ', c2);
     }
 
   }
 
-  console.log($("#menuName-blockMenu-0").val());
+  function unique(arr) {
+    let result = [];
+
+    nextInput:
+      for (let i = 0; i < arr.length; i++) {
+        let str = arr[i]; // для каждого элемента
+        for (let j = 0; j < result.length; j++) { // ищем, был ли он уже?
+          if (result[j] == str) continue nextInput; // если да, то следующий
+        }
+        result.push(str);
+      }
+
+    return result;
+  }
+
+  function make(items) {
+
+    for (let i=0; i<items.length/2; i++){
+
+      items_buf = [];
+
+      for (let j=0; j<items[i].length; j++){
+
+        items_buf.push(items[i][j]);
+
+      }
+
+      //console.log(items_buf);
+
+      //строка
+      for (let k=0; k<items.length; k++){
+
+        if (k!=i){
+
+          items_buf1 = [];
+
+          //строка
+          for (let j1=0; j1<items[k].length; j1++){
+
+            items_buf1.push(items[k][j1]);
+
+          }
+
+          //console.log(items_buf1);
+
+          let toAdd = 0;
+          //сравнение строк
+          for (let i2=0; i2<items_buf.length; i2++){
+            for (let j2=0; j2<items_buf1.length; j2++){
+              //console.log(items_buf[i2], items_buf1[j2]);
+              if(items_buf[i2] == items_buf1[j2]){
+                toAdd=1;
+                break;
+              }
+
+            }
+            //console.log(toAdd);
+            if (toAdd==1){
+              break;
+            }
+
+          }
+
+          if (toAdd == 1) {
+            items_buf=unique(items_buf.concat(items_buf1));
+            items[i]=items_buf;
+            items[k]=items_buf;
+            //console.log(items);
+
+          }
+
+        }
+        else {
+          continue;
+        }
+
+      }
+
+    }
+
+    return items;
+  }
+
+  //console.log($("#menuName-blockMenu-0").val());
 
   function addBlock() {
     //получаем новый id
     const newId = blockCount;
+
+    joinsBlock = [];
 
     blockCount+=1;
     console.log('blockCount', blockCount);
@@ -393,6 +480,8 @@
           console.log($('#shluz-blockMenu-'+num2)[0].innerText);
           console.log($('#addArrowBTN-menuItem-'+num)[0].innerText);
 
+          joinsBlock.push('item-menuItem-'+num);
+
         }
         //если у менюшки есть номер
         else {
@@ -403,6 +492,8 @@
           $('#addArrowBTN-menuItem-'+num)[0].innerText = count1;
 
           number+=1;
+
+          joinsBlock.push('item-menuItem-'+num);
 
 
           console.log($('#shluz-blockMenu-'+num2)[0].innerText);
@@ -415,9 +506,12 @@
 
       }
 
-      console.log(info);
+      //console.log(info);
 
     });
+
+    joins.push(joinsBlock);
+
   }
 
   // 4. Рисуем стрелки .arrow(from, to)
