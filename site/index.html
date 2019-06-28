@@ -50,16 +50,12 @@
       <div class="dropdown-menu">
         <a class="dropdown-item" onclick="addBlock();">Меню</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Ключевые слова</a>
+        <a class="dropdown-item" onclick="addBlockKey();">Ключевые слова</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Статические слова</a>
+        <a class="dropdown-item" onclick="addBlockKey();">Статические слова</a>
       </div>
-
     </div>
 
-    <div>
-      <button class="btn btn-primary" id="save_bnt" type="submit" onclick="go()">Сохранить настройки</button>
-    </div>
 
     <ul class="navbar-nav my-2 my-lg-0">
       <li class="nav-item">
@@ -102,14 +98,13 @@
   </div>
 </nav>
 <body>
+<div id="main" style="width: 83.23%; height: 1000px">
 
-<div class = "row" id="main" style="width: 83.23%; height: 1000px">
-
-  <!--<div class="row">
+  <div class="row">
 
     <div class="col-md-4">
       <div class="card border-dark mb-3" style="max-width: 18rem;">
-        &lt;!&ndash;<div class="card-header">Введите название меню</div>&ndash;&gt;
+       <div class="card-header">Введите название меню</div>
         <div class="form-group">
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"  placeholder="">Введите название меню</textarea>
         </div>
@@ -138,7 +133,7 @@
             </div>
 
             <div class="header" align="center">
-              &lt;!&ndash;<input name="menu_name" type="text" placeholder="Введите название пункта" />&ndash;&gt;
+             <input name="menu_name" type="text" placeholder="Введите название пункта" />
               <input class="form-control" name="menu_name" id="menu_name" type="text" placeholder="Введите название пункта">
             </div>
 
@@ -189,8 +184,7 @@
 
 
             <div class="header" align="center">
-              &lt;!&ndash;Введите слово <br>&ndash;&gt;
-              &lt;!&ndash;<input name="key_word" type="text" placeholder="Введите слово" align="left" />&ndash;&gt;
+             Введите слово <br>
               <input class="form-control" name="key_word" id="key_word" type="text" placeholder="Введите слово">
             </div>
 
@@ -245,7 +239,7 @@
           </div>
 
           <div class="header" align="center">
-            &lt;!&ndash;<input name="static_word" type="text" placeholder="Введите слово" />&ndash;&gt;
+           <input name="static_word" type="text" placeholder="Введите слово" />
             <input class="form-control" name="static_word" id="static_word" type="text" placeholder="Введите слово">
           </div>
 
@@ -265,8 +259,7 @@
 
     </div>
 
-  </div>-->
-
+  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -282,6 +275,7 @@
   let joins = [];
   let count = 0;
   let countMenuItem=0;
+  let countMenuItemKey=0;
   var gg;
   let isClicked=0;
   let number=0;
@@ -289,26 +283,6 @@
   let info = {
 
   };
-
-  function go() {
-    var i;
-    //для блоков menuName
-    for (i = 0; i < blockCount; i++) {
-      var c1 = document.getElementById('menuName-blockMenu-'+i).value;
-      var c2 = document.getElementById('shluz-blockMenu-'+i).innerText;
-      console.log('menuName-blockMenu-'+i, ': ', c1);
-      console.log('shluz-blockMenu-'+i, ': ', c2);
-    }
-    for (i = 1; i <= countMenuItem; i++) {
-      var c1 = document.getElementById('item-menuItem-'+i).value;
-      var c2 = document.getElementById('addArrowBTN-menuItem-'+i).innerText;
-      console.log('item-menuItem-'+i, ': ', c1);
-      console.log('shluz-blockMenu-'+i, ': ', c2);
-    }
-
-  }
-
-  console.log($("#menuName-blockMenu-0").val());
 
   function addBlock() {
     //получаем новый id
@@ -327,9 +301,6 @@
       containment: "#main",
       scroll: false,
     });
-
-
-
 
 
     $(`#addItemMenu-blockMenu-${newId}`).click(function (e) {
@@ -418,9 +389,111 @@
 
     });
   }
+  function addBlockKey() {
+    //получаем новый id
+    const newIdK = blockCount;
 
-  // 4. Рисуем стрелки .arrow(from, to)
-  //arrowsDrawer1.arrow('#block_1', '#block_2');
+    blockCount+=1;
+    console.log('blockCount', blockCount);
+
+    console.log('newIdK', newIdK);
+
+    //создаем блок
+    addBlockMenuKey("#main","blockMenuKey-"+newIdK);
+
+    //вешаем на него двежение и перерисовку стрелок
+    $(`#blockMenuKey-${newIdK}`).draggable({
+      containment: "#main",
+      scroll: false,
+    });
+
+
+    $(`#addItemInMenuKey-blockMenuKey-${newIdK}`).click(function (e) {
+
+      let num=e.currentTarget.id.split('-')[2];
+      countMenuItemKey+=1;
+      console.log('countMenuItemKey', countMenuItemKey);
+      isClicked=0;
+
+
+      addItemInMenuKey('#containerMenu-blockMenuKey-'+num,'menuItemKey-'+countMenuItemKey);
+
+      $(`#remove-menuItemKey-${countMenuItemKey}`).click(function (e) {
+        countMenuItem-=1;
+        console.log('countMenuItem remove', countMenuItem);
+        e.currentTarget.parentElement.parentElement.parentElement.remove();
+      });
+
+      ///Вешаем обработчик возможно пристыкавываетля
+      $(`#addArrowBTN-menuItemKey-${countMenuItemKey}`).click(function (e) {
+        docking = e.currentTarget.id;
+      });
+
+    });
+
+    $(`#remove-blockMenuKey-${newIdK}`).click(function (e) {
+      blockCount-=1;
+      countOfDeleted+=1;
+      console.log('blockCount remove', blockCount);
+      console.log('countMenuItemKey remove', countMenuItemKey);
+      e.currentTarget.parentElement.parentElement.parentElement.remove();
+    });
+
+    //Вешаем обработчик возможно пристыковыемого
+    $(`#shluz-blockMenKey-${newIdK}`).click(function (e) {
+
+      let id2 = e.currentTarget.attributes.id.nodeValue;
+      /*      console.log(e);*/
+      if(docking != null || docking !="" ){
+
+        console.log(docking);
+
+        if (isClicked==0){
+          count+=1;
+          isClicked=1;
+        }
+
+
+        let num = docking.split('-')[2];
+        let num2=e.currentTarget.id.split('-')[2];
+
+        //если у менюшкт нет номера
+        if ($('#shluz-blockMenuKey-'+num2)[0].innerText == '') {
+
+          $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count-number-countOfDeleted;
+
+          $('#shluz-blockMenuKey-'+num2)[0].innerText = count-number-countOfDeleted;
+
+
+          console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
+          console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
+
+        }
+        //если у менюшки есть номер
+        else {
+
+          let count1 = $('#shluz-blockMenuKey-'+num2)[0].innerText;
+          console.log(count1);
+
+          $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count1;
+
+          number+=1;
+
+
+          console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
+          console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
+
+        }
+
+        info.block_1=num;
+        info.block_2=num2;
+
+      }
+
+      console.log(info);
+
+    });
+  }
 </script>
 </div>
 </body>
