@@ -16,20 +16,6 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        .flex-container{
-            border: 2px solid #ccc;
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: space-between;
-        }
-        .flex-item{
-            background: darkmagenta;
-            text-align: center;
-            padding: 10px;
-            margin: 10px;
-        }
-    </style>
 
 </head>
 <body>
@@ -290,6 +276,8 @@
     let blockCount = 0;
     let blockCountKey=0;
     let countOfDeletedKey=0;
+    let newWordsId=0;
+    let countKeyword=0;
     let docking = '';
     let docking2 = '';
     let joins = [];
@@ -425,11 +413,32 @@
         });
 
       }
+        $(`#addItemMenu-blockMenuKey-${1}`).click(function (e) {
+           let numKey=e.currentTarget.parentElement.parentElement.parentElement.parentElement.id.split('-')[2];
+            countKeyword+=1;
+           console.log('countKeyword', countKeyword);
+           isClicked=0;
 
-      ///Вешаем обработчик возможно пристыкавываетля
-      // $(`#addArrowBTN-menuItemKey-${countMenuItemKey}`).click(function (e) {
-      //   docking = e.currentTarget.id;
-      // });
+
+           addWordKey('#Kek','KeyWords-'+countKeyword);
+
+            $(`#remove-menuItem-${countKeyword}`).click(function (e) {
+                countMenuItem-=1;
+                console.log('countMenuItem remove', countKeyword);
+                e.currentTarget.parentElement.parentElement.parentElement.remove();
+            });
+
+            ///Вешаем обработчик возможно пристыкавываетля
+            $(`#addArrowBTN-menuItem-${countKeyword}`).click(function (e) {
+                docking = e.currentTarget.id;
+            });
+
+        });
+
+     //Вешаем обработчик возможно пристыкавываетля
+      $(`#addArrowBTN-menuItemKey-${countMenuItemKey}`).click(function (e) {
+        docking = e.currentTarget.id;
+      });
 
       $(`#remove-blockMenuKey-${1}`).click(function (e) {
         maxKeyWordsBlock=0;
@@ -494,13 +503,13 @@
 
       });
     }
+
   </script>
 </div>
-<div id="main_static" style="width: 35%; height: 1000px;float:right "></div>
-
 
 
 </div>
 </body>
 </body>
 </html>
+
