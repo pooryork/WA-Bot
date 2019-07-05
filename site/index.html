@@ -1,494 +1,505 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/main.css">
-<!--  <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>-->
-<!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->
-<!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>-->
-<!--  <script type="text/javascript" src="jquery.jsPlumb-1.0.1-min.js "></script>-->
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <!--  <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>-->
+    <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->
+    <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>-->
+    <!--  <script type="text/javascript" src="jquery.jsPlumb-1.0.1-min.js "></script>-->
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <style>
-    .flex-container{
-      border: 2px solid #ccc;
-
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-between;
-    }
-
-    .flex-item{
-      background: darkmagenta;
-      text-align: center;
-      padding: 10px;
-      margin: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .flex-container{
+            border: 2px solid #ccc;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+        }
+        .flex-item{
+            background: darkmagenta;
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
 
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <a class="navbar-brand" href="#">
-    <img src="https://img.icons8.com/dusk/64/000000/bot.png">
-    botGen
-  </a>
+    <a class="navbar-brand" href="#">
+        <img src="https://img.icons8.com/dusk/64/000000/bot.png">
+        botGen
+    </a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-    <div class="btn-group navbar-nav mr-auto">
-      <div type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        Добавить
-      </div>
+        <div class="btn-group navbar-nav mr-auto">
+            <div type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                Добавить
+            </div>
 
-      <div class="dropdown-menu">
-        <a class="dropdown-item" onclick="addBlock();">Меню</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" onclick="addBlockKey();">Ключевые слова</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" onclick="addBlockKey();">Статические слова</a>
-      </div>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" onclick="addBlock();">Меню</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" onclick="addBlockKey();">Ключевые слова</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" onclick="addBlockKey();">Статические слова</a>
+            </div>
+        </div>
+
+
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Выйти</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Профиль</a>
+            </li>
+        </ul>
+
     </div>
-
-
-    <ul class="navbar-nav my-2 my-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Выйти</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Профиль</a>
-      </li>
-    </ul>
-
-  </div>
 
 </nav>
 
 <nav class="col-md-2 d-none d-md-block bg-light sidebar float-right mt-4">
-  <div class="sidebar-sticky">
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          Dashboard <span class="sr-only">(current)</span>
-        </a>
-      </li>
-    </ul>
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Dashboard <span class="sr-only">(current)</span>
+                </a>
+            </li>
+        </ul>
 
-    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-      <span>Saved reports</span>
-      <a class="d-flex align-items-center text-muted" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-      </a>
-    </h6>
-    <ul class="nav flex-column mb-2">
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-          Current month
-        </a>
-      </li>
-    </ul>
-  </div>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Saved reports</span>
+            <a class="d-flex align-items-center text-muted" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Current month
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>
 <body>
 <div id="main" style="width: 83.23%; height: 1000px">
 
-  <div class="row">
+<!--    <div class="row">-->
 
-    <div class="col-md-4" id="1">
-      <div class="card border-dark mb-3" style="max-width: 18rem;">
-       <div class="card-header">Введите название меню</div>
-        <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"  placeholder="">Введите название меню</textarea>
-        </div>
+<!--        <div class="col-md-4" id="1">-->
+<!--            <div class="card border-dark mb-3" style="max-width: 18rem;">-->
+<!--                <div class="card-header">Введите название меню</div>-->
+<!--                <div class="form-group">-->
+<!--                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"  placeholder="">Введите название меню</textarea>-->
+<!--                </div>-->
 
-        <div class="up_bar_outside" align="left">
+<!--                <div class="up_bar_outside" align="left">-->
 
-          <div class="button_close_outside" >
-            <button type="button" class="close" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+<!--                    <div class="button_close_outside" >-->
+<!--                        <button type="button" class="close" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
 
-          <div class="number_button" align="left">
-            <button type="button" class="btn btn-outline-danger">1</button>
-          </div>
+<!--                    <div class="number_button" align="left">-->
+<!--                        <button type="button" class="btn btn-outline-danger">1</button>-->
+<!--                    </div>-->
 
-        </div>
+<!--                </div>-->
 
-        <div class="card-body text-dark">
-          <div class="card border-dark mb-3" style="max-width: 16rem;">
+<!--                <div class="card-body text-dark">-->
+<!--                    <div class="card border-dark mb-3" style="max-width: 16rem;">-->
 
-            <div class="button_close_outside" >
-              <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+<!--                        <div class="button_close_outside" >-->
+<!--                            <button type="button" class="close" aria-label="Close">-->
+<!--                                <span aria-hidden="true">&times;</span>-->
+<!--                            </button>-->
+<!--                        </div>-->
 
-            <div class="header" align="center">
-             <input name="menu_name" type="text" placeholder="Введите название пункта" />
-              <input class="form-control" name="menu_name" id="menu_name" type="text" placeholder="Введите название пункта">
-            </div>
-
-
-            <div class="number_button" align="right">
-              <button type="button" class="btn btn-outline-primary">1</button>
-            </div>
+<!--                        <div class="header" align="center">-->
+<!--                            <input name="menu_name" type="text" placeholder="Введите название пункта" />-->
+<!--                            <input class="form-control" name="menu_name" id="menu_name" type="text" placeholder="Введите название пункта">-->
+<!--                        </div>-->
 
 
+<!--                        <div class="number_button" align="right">-->
+<!--                            <button type="button" class="btn btn-outline-primary">1</button>-->
+<!--                        </div>-->
 
-          </div>
 
-        </div>
 
-        <div class="bnt" align="right">
-          <div class="add_button_outside" >
-            <button type="button" class="btn btn-success" aria-haspopup="true" aria-hidden="true">+</button>
-          </div>
-        </div>
+<!--                    </div>-->
 
-      </div>
+<!--                </div>-->
+
+<!--                <div class="bnt" align="right">-->
+<!--                    <div class="add_button_outside" >-->
+<!--                        <button type="button" class="btn btn-success" aria-haspopup="true" aria-hidden="true">+</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-4" id="2">-->
+<!--            <div class="card border-dark mb-3" style="max-width: 18rem;">-->
+<!--                <div class="card-header">Список ключевых слов</div>-->
+<!--                <div class="up_bar_outside" align="left">-->
+
+<!--                    <div class="button_close_outside" >-->
+<!--                        <button type="button" class="close" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+
+<!--                    <div class="number_button" align="left">-->
+<!--                        <button type="button" class="btn btn-outline-danger">1</button>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--                <div class="card-body text-dark">-->
+
+<!--                    <div class="card border-dark mb-3" style="max-width: 16rem;">-->
+
+<!--                        <div class="button_close_outside" >-->
+<!--                            <button type="button" class="close" aria-label="Close">-->
+<!--                                <span aria-hidden="true">&times;</span>-->
+<!--                            </button>-->
+<!--                        </div>-->
+
+<!--                        <span align = "center">Введите слово</span>-->
+<!--                        <div class="header" align="center">-->
+
+<!--                            <button type="button" class="close" aria-label="Close">-->
+<!--                                <span aria-hidden="true">&times;</span>-->
+<!--                            </button>-->
+<!--                            <input class="form-control" name="key_word" id="key_word" type="text" placeholder="Введите слово">-->
+<!--                            <div class="number_button" align="right">-->
+<!--                                <button type="button" class="btn btn-outline-primary">1</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+
+
+<!--                        <div class="bnt" align="center">-->
+<!--                            <div class="add_button_outside" >-->
+<!--                                <button type="button" class="btn btn-success" aria-haspopup="true" aria-hidden="true">+</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+
+<!--                </div>-->
+
+<!--                <div class="bnt" align="right">-->
+<!--                    <div class="add_button_outside" >-->
+<!--                        <button type="button" class="btn btn-success" aria-haspopup="true" aria-hidden="true">+</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+
+<!--        </div>-->
     </div>
 
-    <div class="col-md-4" id="2">
-      <div class="card border-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Список ключевых слов</div>
-        <div class="up_bar_outside" align="left">
+    <!--  <div class="col-md-4">-->
+    <!--    <div class="card border-dark mb-3" style="max-width: 18rem;">-->
+    <!--      <div class="card-header">Список статических слов</div>-->
+    <!--      <div class="up_bar_outside" align="left">-->
 
-          <div class="button_close_outside" >
-            <button type="button" class="close" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+    <!--        <div class="button_close_outside" >-->
+    <!--          <button type="button" class="close" aria-label="Close">-->
+    <!--            <span aria-hidden="true">&times;</span>-->
+    <!--          </button>-->
+    <!--        </div>-->
 
-          <div class="number_button" align="left">
-            <button type="button" class="btn btn-outline-danger">1</button>
-          </div>
+    <!--        <div class="number_button" align="left">-->
+    <!--          <button type="button" class="btn btn-outline-danger">1</button>-->
+    <!--        </div>-->
 
-        </div>
-        <div class="card-body text-dark">
+    <!--      </div>-->
+    <!--      <div class="card-body text-dark">-->
+    <!--        <div class="card border-dark mb-3" style="max-width: 16rem;">-->
 
-          <div class="card border-dark mb-3" style="max-width: 16rem;">
+    <!--          <div class="button_close_outside" >-->
+    <!--            <button type="button" class="close" aria-label="Close">-->
+    <!--              <span aria-hidden="true">&times;</span>-->
+    <!--            </button>-->
+    <!--          </div>-->
 
-            <div class="button_close_outside" >
-              <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+    <!--          <div class="header" align="center">-->
+    <!--           <input name="static_word" type="text" placeholder="Введите слово" />-->
+    <!--            <input class="form-control" name="static_word" id="static_word" type="text" placeholder="Введите слово">-->
+    <!--          </div>-->
 
-            <span align = "center">Введите слово</span>
-            <div class="header" align="center">
+    <!--          <div class="number_button" align="right">-->
+    <!--            <button type="button" class="btn btn-outline-primary">1</button>-->
+    <!--          </div>-->
 
-              <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <input class="form-control" name="key_word" id="key_word" type="text" placeholder="Введите слово">
-              <div class="number_button" align="right">
-                <button type="button" class="btn btn-outline-primary">1</button>
-              </div>
-            </div>
+    <!--        </div>-->
 
+    <!--      </div>-->
 
+    <!--      <div class="bnt" align="right">-->
+    <!--        <div class="add_button_outside" >-->
+    <!--          <button type="button" class="btn btn-success" aria-haspopup="true" aria-hidden="true">+</button>-->
+    <!--        </div>-->
+    <!--      </div>-->
 
-            <div class="bnt" align="center">
-              <div class="add_button_outside" >
-                <button type="button" class="btn btn-success" aria-haspopup="true" aria-hidden="true">+</button>
-              </div>
-            </div>
+    <!--    </div>-->
 
-          </div>
+    <!--  </div>-->
+    <!--</div>-->
 
-        </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src='blockGen.js' type='text/javascript'></script>
+  <script type='text/javascript'>
+    ////////canvas//////////
+    // var canvas = document.createElement('canvas');
+    // div = document.getElementById('main');
+    // canvas.id     = "CursorLayer";
+    // canvas.width  = 1224;
+    // canvas.height = 768;
+    // canvas.style.zIndex   = -8;
+    // canvas.style.position = "absolute";
+    // canvas.style.border   = "1px solid";
+    // div.appendChild(canvas);
 
-        <div class="bnt" align="right">
-          <div class="add_button_outside" >
-            <button type="button" class="btn btn-success" aria-haspopup="true" aria-hidden="true">+</button>
-          </div>
-        </div>
+    let blockCount = 0;
+    let blockCountKey=0;
+    let countOfDeletedKey=0;
+    let docking = '';
+    let docking2 = '';
+    let joins = [];
+    let count = 0;
+    let countMenuItem=0;
+    let countMenuItemKey=0;
+    var maxKeyWordsBlock=0;
+    var gg;
+    let isClicked=0;
+    let number=0;
+    let countOfDeleted = 0;
 
-      </div>
+    let info = {
 
-    </div>
-  </div>
+    };
+    function addBlock() {
+      //получаем новый id
+      const newId = blockCount;
 
-<!--  <div class="col-md-4">-->
-<!--    <div class="card border-dark mb-3" style="max-width: 18rem;">-->
-<!--      <div class="card-header">Список статических слов</div>-->
-<!--      <div class="up_bar_outside" align="left">-->
+      blockCount+=1;
+      console.log('blockCount', blockCount);
 
-<!--        <div class="button_close_outside" >-->
-<!--          <button type="button" class="close" aria-label="Close">-->
-<!--            <span aria-hidden="true">&times;</span>-->
-<!--          </button>-->
-<!--        </div>-->
+      console.log('newId', newId);
 
-<!--        <div class="number_button" align="left">-->
-<!--          <button type="button" class="btn btn-outline-danger">1</button>-->
-<!--        </div>-->
+      //создаем блок
+      addBlockMenu("#main","blockMenu-"+newId);
 
-<!--      </div>-->
-<!--      <div class="card-body text-dark">-->
-<!--        <div class="card border-dark mb-3" style="max-width: 16rem;">-->
+      //вешаем на него двежение и перерисовку стрелок
+      $(`#blockMenu-${newId}`).draggable({
+        containment: "#main",
+        scroll: false,
+      });
 
-<!--          <div class="button_close_outside" >-->
-<!--            <button type="button" class="close" aria-label="Close">-->
-<!--              <span aria-hidden="true">&times;</span>-->
-<!--            </button>-->
-<!--          </div>-->
+      $(`#addItemMenu-blockMenu-${newId}`).click(function (e) {
 
-<!--          <div class="header" align="center">-->
-<!--           <input name="static_word" type="text" placeholder="Введите слово" />-->
-<!--            <input class="form-control" name="static_word" id="static_word" type="text" placeholder="Введите слово">-->
-<!--          </div>-->
-
-<!--          <div class="number_button" align="right">-->
-<!--            <button type="button" class="btn btn-outline-primary">1</button>-->
-<!--          </div>-->
-
-<!--        </div>-->
-
-<!--      </div>-->
-
-<!--      <div class="bnt" align="right">-->
-<!--        <div class="add_button_outside" >-->
-<!--          <button type="button" class="btn btn-success" aria-haspopup="true" aria-hidden="true">+</button>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--    </div>-->
-
-<!--  </div>-->
-<!--</div>-->
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src='blockGen.js' type='text/javascript'></script>
-<script type='text/javascript'>
-  let blockCount = 0;
-  let docking = '';
-  let docking2 = '';
-  let joins = [];
-  let count = 0;
-  let countMenuItem=0;
-  let countMenuItemKey=0;
-  let maxKeyWordsBlock=0;
-  var gg;
-  let isClicked=0;
-  let number=0;
-  let countOfDeleted = 0;
-  let info = {
-
-  };
-  function addBlock() {
-    //получаем новый id
-    const newId = blockCount;
-
-    blockCount+=1;
-    console.log('blockCount', blockCount);
-
-    console.log('newId', newId);
-
-    //создаем блок
-    addBlockMenu("#main","blockMenu-"+newId);
-
-    //вешаем на него двежение и перерисовку стрелок
-    $(`#blockMenu-${newId}`).draggable({
-      containment: "#main",
-      scroll: false,
-    });
-
-    $(`#addItemMenu-blockMenu-${newId}`).click(function (e) {
-
-      let num=e.currentTarget.id.split('-')[2];
-      countMenuItem+=1;
-      console.log('countMenuItem', countMenuItem);
-      isClicked=0;
+        let num=e.currentTarget.id.split('-')[2];
+        countMenuItem+=1;
+        console.log('countMenuItem', countMenuItem);
+        isClicked=0;
 
 
-      addItemInMenu('#containerMenu-blockMenu-'+num,'menuItem-'+countMenuItem);
+        addItemInMenu('#containerMenu-blockMenu-'+num,'menuItem-'+countMenuItem);
 
-      $(`#remove-menuItem-${countMenuItem}`).click(function (e) {
+        $(`#remove-menuItem-${countMenuItem}`).click(function (e) {
           countMenuItem-=1;
           console.log('countMenuItem remove', countMenuItem);
           e.currentTarget.parentElement.parentElement.parentElement.remove();
-      });
+        });
 
-      ///Вешаем обработчик возможно пристыкавываетля
-      $(`#addArrowBTN-menuItem-${countMenuItem}`).click(function (e) {
+        ///Вешаем обработчик возможно пристыкавываетля
+        $(`#addArrowBTN-menuItem-${countMenuItem}`).click(function (e) {
           docking = e.currentTarget.id;
+        });
+
       });
 
-    });
-
-    $(`#remove-blockMenu-${newId}`).click(function (e) {
+      $(`#remove-blockMenu-${newId}`).click(function (e) {
         blockCount-=1;
         countOfDeleted+=1;
         console.log('blockCount remove', blockCount);
         console.log('countMenuItem remove', countMenuItem);
         e.currentTarget.parentElement.parentElement.parentElement.remove();
-    });
-
-    //Вешаем обработчик возможно пристыковыемого
-    $(`#shluz-blockMenu-${newId}`).click(function (e) {
-
-      let id2 = e.currentTarget.attributes.id.nodeValue;
-/*      console.log(e);*/
-      if(docking != null || docking !="" ){
-
-        console.log(docking);
-
-        if (isClicked==0){
-          count+=1;
-          isClicked=1;
-        }
-
-
-        let num = docking.split('-')[2];
-        let num2=e.currentTarget.id.split('-')[2];
-
-        //если у менюшкт нет номера
-        if ($('#shluz-blockMenu-'+num2)[0].innerText == '') {
-
-          $('#addArrowBTN-menuItem-'+num)[0].innerText = count-number-countOfDeleted;
-
-          $('#shluz-blockMenu-'+num2)[0].innerText = count-number-countOfDeleted;
-
-
-          console.log($('#shluz-blockMenu-'+num2)[0].innerText);
-          console.log($('#addArrowBTN-menuItem-'+num)[0].innerText);
-
-        }
-        //если у менюшки есть номер
-        else {
-
-          let count1 = $('#shluz-blockMenu-'+num2)[0].innerText;
-          console.log(count1);
-
-          $('#addArrowBTN-menuItem-'+num)[0].innerText = count1;
-
-          number+=1;
-
-
-          console.log($('#shluz-blockMenu-'+num2)[0].innerText);
-          console.log($('#addArrowBTN-menuItem-'+num)[0].innerText);
-
-        }
-
-        info.block_1=num;
-        info.block_2=num2;
-
-      }
-
-      console.log(info);
-
-    });
-  }
-  function addBlockKey() {
-
-    //получаем новый id
-    const newIdK = blockCount;
-
-    blockCount+=1;
-    console.log('blockCount', blockCount);
-
-    console.log('newIdK', newIdK);
-
-    //создаем блок
-    if(maxKeyWordsBlock==0){
-      maxKeyWordsBlock+=1;
-      addBlockMenuKey("#main","blockMenuKey-"+newIdK);
-
-      //вешаем на него двежение и перерисовку стрелок
-      $(`#blockMenuKey-${newIdK}`).draggable({
-        containment: "#main",
-        scroll: false,
       });
 
+      //Вешаем обработчик возможно пристыковыемого
+      $(`#shluz-blockMenu-${newId}`).click(function (e) {
+
+        let id2 = e.currentTarget.attributes.id.nodeValue;
+        /*      console.log(e);*/
+        if(docking != null || docking !="" ){
+
+          console.log(docking);
+
+          if (isClicked==0){
+            count+=1;
+            isClicked=1;
+          }
+
+
+          let num = docking.split('-')[2];
+          let num2=e.currentTarget.id.split('-')[2];
+
+          //если у менюшкт нет номера
+          if ($('#shluz-blockMenu-'+num2)[0].innerText == '') {
+
+            $('#addArrowBTN-menuItem-'+num)[0].innerText = count-number-countOfDeleted;
+
+            $('#shluz-blockMenu-'+num2)[0].innerText = count-number-countOfDeleted;
+
+
+            console.log($('#shluz-blockMenu-'+num2)[0].innerText);
+            console.log($('#addArrowBTN-menuItem-'+num)[0].innerText);
+
+          }
+          //если у менюшки есть номер
+          else {
+
+            let count1 = $('#shluz-blockMenu-'+num2)[0].innerText;
+            console.log(count1);
+
+            $('#addArrowBTN-menuItem-'+num)[0].innerText = count1;
+
+            number+=1;
+
+
+            console.log($('#shluz-blockMenu-'+num2)[0].innerText);
+            console.log($('#addArrowBTN-menuItem-'+num)[0].innerText);
+
+          }
+
+          info.block_1=num;
+          info.block_2=num2;
+
+        }
+
+        console.log(info);
+
+      });
     }
+    function addBlockKey() {
 
-    ///Вешаем обработчик возможно пристыкавываетля
-    // $(`#addArrowBTN-menuItemKey-${countMenuItemKey}`).click(function (e) {
-    //   docking = e.currentTarget.id;
-    // });
+      //создаем блок
+      if(maxKeyWordsBlock==0){
+        blockCountKey=1;
+        console.log('blockCountKey', blockCountKey);
+        maxKeyWordsBlock=1;
+        addBlockMenuKey("#main","blockMenuKey-"+1);
 
-    $(`#remove-blockMenuKey-${newIdK}`).click(function (e) {
-      blockCount-=1;
-      countOfDeleted+=1;
-      console.log('blockCount remove', blockCount);
-      console.log('countMenuItemKey remove', countMenuItemKey);
-      e.currentTarget.parentElement.parentElement.parentElement.remove();
-    });
-
-    //Вешаем обработчик возможно пристыковыемого
-    $(`#shluz-blockMenKey-${newIdK}`).click(function (e) {
-
-      let id2 = e.currentTarget.attributes.id.nodeValue;
-      /*      console.log(e);*/
-      if(docking != null || docking !="" ){
-
-        console.log(docking);
-
-        if (isClicked==0){
-          count+=1;
-          isClicked=1;
-        }
-
-
-        let num = docking.split('-')[2];
-        let num2=e.currentTarget.id.split('-')[2];
-
-        //если у менюшкт нет номера
-        if ($('#shluz-blockMenuKey-'+num2)[0].innerText == '') {
-
-          $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count-number-countOfDeleted;
-
-          $('#shluz-blockMenuKey-'+num2)[0].innerText = count-number-countOfDeleted;
-
-
-          console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
-          console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
-
-        }
-        //если у менюшки есть номер
-        else {
-
-          let count1 = $('#shluz-blockMenuKey-'+num2)[0].innerText;
-          console.log(count1);
-
-          $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count1;
-
-          number+=1;
-
-
-          console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
-          console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
-
-        }
-
-        info.block_1=num;
-        info.block_2=num2;
+        //вешаем на него двежение и перерисовку стрелок
+        $(`#blockMenuKey-${1}`).draggable({
+          containment: "#main",
+          scroll: false,
+        });
 
       }
 
-      console.log(info);
+      ///Вешаем обработчик возможно пристыкавываетля
+      // $(`#addArrowBTN-menuItemKey-${countMenuItemKey}`).click(function (e) {
+      //   docking = e.currentTarget.id;
+      // });
 
-    });
-  }
-</script>
+      $(`#remove-blockMenuKey-${1}`).click(function (e) {
+        maxKeyWordsBlock=0;
+        blockCountKey-=1;
+        countOfDeletedKey+=1;
+        console.log('blockCountKey remove', blockCountKey);
+        e.currentTarget.parentElement.parentElement.parentElement.remove();
+      });
+
+      //Вешаем обработчик возможно пристыковыемого
+      $(`#shluz-blockMenKey-${1}`).click(function (e) {
+
+        let id2 = e.currentTarget.attributes.id.nodeValue;
+        /*      console.log(e);*/
+        if(docking != null || docking !="" ){
+
+          console.log(docking);
+
+          if (isClicked==0){
+            count+=1;
+            isClicked=1;
+          }
+
+
+          let num = docking.split('-')[2];
+          let num2=e.currentTarget.id.split('-')[2];
+
+          //если у менюшкт нет номера
+          if ($('#shluz-blockMenuKey-'+num2)[0].innerText == '') {
+
+            $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count-number-countOfDeleted;
+
+            $('#shluz-blockMenuKey-'+num2)[0].innerText = count-number-countOfDeleted;
+
+
+            console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
+            console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
+
+          }
+          //если у менюшки есть номер
+          else {
+
+            let count1 = $('#shluz-blockMenuKey-'+num2)[0].innerText;
+            console.log(count1);
+
+            $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count1;
+
+            number+=1;
+
+
+            console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
+            console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
+
+          }
+
+          info.block_1=num;
+          info.block_2=num2;
+
+        }
+
+        console.log(info);
+
+      });
+    }
+  </script>
+</div>
+<div id="main_static" style="width: 35%; height: 1000px;float:right "></div>
+
+
+
 </div>
 </body>
 </body>
