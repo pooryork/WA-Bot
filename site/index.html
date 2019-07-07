@@ -406,7 +406,7 @@
         maxKeyWordsBlock=1;
         addBlockMenuKey("#main","blockMenuKey-"+1);
 
-        //вешаем на него двежение и перерисовку стрелок
+        //вешаем на него двежение
         $(`#blockMenuKey-${1}`).draggable({
           containment: "#main",
           scroll: false,
@@ -422,10 +422,10 @@
 
            addWordKey('#Kek','KeyWords-'+countKeyword);
 
-            $(`#remove-menuItem-${countKeyword}`).click(function (e) {
+            $(`#remove-KeyWords-${countKeyword}`).click(function (e) {
                 countMenuItem-=1;
-                console.log('countMenuItem remove', countKeyword);
-                e.currentTarget.parentElement.parentElement.parentElement.remove();
+                console.log('KeyWords remove', countKeyword);
+                e.currentTarget.parentElement.parentElement.remove();
             });
 
             ///Вешаем обработчик возможно пристыкавываетля
@@ -448,60 +448,60 @@
         e.currentTarget.parentElement.parentElement.parentElement.remove();
       });
 
-      //Вешаем обработчик возможно пристыковыемого
-      $(`#shluz-blockMenKey-${1}`).click(function (e) {
-
-        let id2 = e.currentTarget.attributes.id.nodeValue;
-        /*      console.log(e);*/
-        if(docking != null || docking !="" ){
-
-          console.log(docking);
-
-          if (isClicked==0){
-            count+=1;
-            isClicked=1;
-          }
-
-
-          let num = docking.split('-')[2];
-          let num2=e.currentTarget.id.split('-')[2];
-
-          //если у менюшкт нет номера
-          if ($('#shluz-blockMenuKey-'+num2)[0].innerText == '') {
-
-            $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count-number-countOfDeleted;
-
-            $('#shluz-blockMenuKey-'+num2)[0].innerText = count-number-countOfDeleted;
-
-
-            console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
-            console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
-
-          }
-          //если у менюшки есть номер
-          else {
-
-            let count1 = $('#shluz-blockMenuKey-'+num2)[0].innerText;
-            console.log(count1);
-
-            $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count1;
-
-            number+=1;
-
-
-            console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
-            console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
-
-          }
-
-          info.block_1=num;
-          info.block_2=num2;
-
-        }
-
-        console.log(info);
-
-      });
+      // //Вешаем обработчик возможно пристыковыемого
+      // $(`#shluz-blockMenKey-${1}`).click(function (e) {
+      //
+      //   let id2 = e.currentTarget.attributes.id.nodeValue;
+      //   /*      console.log(e);*/
+      //   if(docking != null || docking !="" ){
+      //
+      //     console.log(docking);
+      //
+      //     if (isClicked==0){
+      //       count+=1;
+      //       isClicked=1;
+      //     }
+      //
+      //
+      //     let num = docking.split('-')[2];
+      //     let num2=e.currentTarget.id.split('-')[2];
+      //
+      //     //если у менюшкт нет номера
+      //     if ($('#shluz-blockMenuKey-'+num2)[0].innerText == '') {
+      //
+      //       $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count-number-countOfDeleted;
+      //
+      //       $('#shluz-blockMenuKey-'+num2)[0].innerText = count-number-countOfDeleted;
+      //
+      //
+      //       console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
+      //       console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
+      //
+      //     }
+      //     //если у менюшки есть номер
+      //     else {
+      //
+      //       let count1 = $('#shluz-blockMenuKey-'+num2)[0].innerText;
+      //       console.log(count1);
+      //
+      //       $('#addArrowBTN-menuItemKey-'+num)[0].innerText = count1;
+      //
+      //       number+=1;
+      //
+      //
+      //       console.log($('#shluz-blockMenuKey-'+num2)[0].innerText);
+      //       console.log($('#addArrowBTN-menuItemKey-'+num)[0].innerText);
+      //
+      //     }
+      //
+      //     info.block_1=num;
+      //     info.block_2=num2;
+      //
+      //   }
+      //
+      //   console.log(info);
+      //
+      // });
     }
 
   </script>
