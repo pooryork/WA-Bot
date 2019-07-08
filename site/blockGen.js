@@ -1,9 +1,16 @@
-//Главная менюшка
+/**
+ ////////////////////////////////////////////////////////////////////////
+ //              **** Добавление main block****                        //
+ ////////////////////////////////////////////////////////////////////////
+ */
 function addBlockMenu(jQueryId,newId){
         $(jQueryId).append(jQuery('<div/>', {
             class: 'drag col-md-4',
             css: {
-                "max-width" : "15rem"
+                "z-index":"10",
+                "position":"absolute",
+                "max-width" : "20rem",
+                'margin':'10px'
             },
             id : newId
         }).append(
@@ -11,6 +18,7 @@ function addBlockMenu(jQueryId,newId){
                 class: 'card border-dark mb-3',
                 css: {
                     'maxWidth': '18rem',
+                    'padding': '1.25rem'
                 }
             }).append(
                 jQuery('<div/>', {
@@ -70,7 +78,11 @@ function addBlockMenu(jQueryId,newId){
         ))
 
 }
-//main подблок
+/**
+ ////////////////////////////////////////////////////////////////////////
+ //              **** Добавление подменю в main block****              //
+ ////////////////////////////////////////////////////////////////////////
+ */
 function addItemInMenu(jQueryId,newId) {
     $(jQueryId).append(jQuery('<div/>', {
         class: 'card border-dark mb-3',
@@ -95,9 +107,7 @@ function addItemInMenu(jQueryId,newId) {
         jQuery('<div/>', {
             class: 'header',
             align: 'center',
-            css: {
-                "border":"#446FBB outset 5px",
-            }
+
         }).append(jQuery('<input/>', {
             class: "form-control",
             name: "menu_name",
@@ -120,19 +130,26 @@ function addItemInMenu(jQueryId,newId) {
             id : "addArrowBTN-"+newId
         }))),
 )))}
-    ////////////////////////////////
+/**
+ ////////////////////////////////////////////////////////////////////////
+ //              **** Добавление ключевого меню****                    //
+ ////////////////////////////////////////////////////////////////////////
+ */
 function addBlockMenuKey(jQueryId,newIdK){
     $(jQueryId).append(jQuery('<div/>', {
+
         class: 'drag col-md-4',
-        css: {
-            "max-width" : "15rem"
-        },
-        id : newIdK
+        id : newIdK,
+        "position":"absolute",
+        'margin':'10px',
+
     }).append(
         jQuery('<div/>', {
             class: 'card border-dark mb-3',
             css: {
-                'maxWidth': '18rem',
+                'max-width': '18rem',
+                'padding': '1.25rem'
+
             }
         }).append(
             jQuery('<div/>', {
@@ -141,7 +158,7 @@ function addBlockMenuKey(jQueryId,newIdK){
                 class: 'form-control',
                 id: 'menuName-'+newIdK,
                 rows: 1,
-                placeholder: "Список ключевых слов",
+                placeholder: "Ключевых слова",
                 css: {
                     resize: "none"
                 }
@@ -169,6 +186,12 @@ function addBlockMenuKey(jQueryId,newIdK){
                         id:'shluz-' + newIdK
                     })
                 )),
+            jQuery('<div/>', {
+                class: 'card-body text-dark',
+                id:'Prosto-block-4tobi-porasivee-bilo'
+
+            }),
+
             jQuery('<div/>',{
                 class: "card border-dark mb-3",
                 'maxWidth': '16rem',
@@ -176,38 +199,14 @@ function addBlockMenuKey(jQueryId,newIdK){
                 class: 'bnt',
                 align: 'right',
                 position: 'right'
-            }).append(jQuery('<div/>', {
-                    class: 'button_close_inside',
-                    align: 'right',
-                }).append(jQuery('<button/>', {
-                    type: 'button',
-                    class: 'close',
-                    id:'remove-'+newIdK,
-                    position: 'right',
-                    'aria-label': 'Close'
-                }).append(jQuery('<span/>', {'aria-hidden': true, text: '×'}))),
+            }),
                 //////////////////////////
+
                 jQuery('<div/>', {
                     class: 'header',
-                    align: 'center',
-                }).append(jQuery('<input/>', {
-                    class: "form-control",
-                    name: "menu_name",
-                    id: "item-"+newIdK,
-                    type: "text",
-                    placeholder: "Слово"
-                })).append(jQuery('<div/>', {
-                    class: 'number_button',
-                    align: 'right',
-                }).append(jQuery('<button/>', {
-                    type: "button",
-                    class: "btn btn-primary",
-                    "aria-haspopup": "true",
-                    "aria-hidden": "true",
-                    text: "+",
-                    id : "addArrowBTN-"+newIdK
-                }))),
-                //////////////////////////
+                    id:'ContainerKeyWords',
+                    align: 'center'
+                }).append(
 
                 jQuery("<div/>",{
                     class:"add_button_outside",
@@ -219,44 +218,22 @@ function addBlockMenuKey(jQueryId,newIdK){
                     "aria-haspopup": "true",
                     "aria-hidden": "true",
                     text: "+",
-                    id : "addArrowBTN-"+newIdK
+                    id : 'addItemMenu-'+newIdK
                 })),
             )),
-
-
-            jQuery('<div/>', {
-                class: 'card-body text-dark',
-                id:'containerMenu-'+ newIdK
-
-            }),
-            jQuery('<div/>', {
-                class: "bnt",
-                align: "right"
-            }).append(jQuery('<div/>', {
-                class: "add_button_outside",
-            }).append(jQuery('<button/>', {
-                type: "button",
-                class: "btn btn-success",
-                "aria-haspopup": true,
-                "aria-hidden": true,
-                text: "+",
-                id:'addItemMenu-'+newIdK
-            })))
         )
     ))
-/////////////////////////////////////////////////////////////////////////////////////
 }
-//подменюшка ключевых слов
-function addItemInMenuKey(jQueryId,newIdK) {
+/**
+ ////////////////////////////////////////////////////////////////////////
+ //              **** Подменю ключевых слов****                    //
+ ////////////////////////////////////////////////////////////////////////
+ */
+function addWordKey(jQueryId,newIdK) {
     $(jQueryId).append(jQuery('<div/>', {
-        class: 'card border-dark mb-3',
-        css: {
-            'maxWidth': '16rem',
-        }
-    }).append(jQuery('<div/>',{
-        class: 'bnt',
-        align: 'right',
-        position: 'right'
+        id:'Block-WordKey'+newIdK,
+        align: 'center'
+
     }).append(jQuery('<div/>', {
             class: 'button_close_inside',
             align: 'right',
@@ -266,20 +243,146 @@ function addItemInMenuKey(jQueryId,newIdK) {
             id:'remove-'+newIdK,
             position: 'right',
             'aria-label': 'Close'
-        }).append(jQuery('<span/>', {'aria-hidden': true, text: '×'}))),
-        //////////////////////////
-        jQuery('<div/>', {
-            class: 'header',
-            align: 'center',
-        }).append(jQuery('<input/>', {
+        }).append(jQuery('<span/>', {'aria-hidden': true, text: '×'}))).append(jQuery('<input/>', {
             class: "form-control",
             name: "menu_name",
             id: "item-"+newIdK,
             type: "text",
             placeholder: "Слово"
-        })),
-        //////////////////////////
+        })),(jQuery('<div/>', {
+        class: 'number_button',
+        align: 'right',
+    }).append(jQuery('<button/>', {
+        type: "button",
+        class: "btn btn-primary",
+        "aria-haspopup": "true",
+        "aria-hidden": "true",
+        text: "+",
+        id : "Row-WordKey-"+newIdK
+        })))
+        ),
+    )
+}
+/**
+ ////////////////////////////////////////////////////////////////////////
+ //              **** Добавление статических слов****                  //
+ ////////////////////////////////////////////////////////////////////////
+ */
+function addBlockMenuStaticKey(jQueryId,newIdSK) {
+    $(jQueryId).append(jQuery('<div/>', {
+        class: 'drag col-md-4',
+        "position":"absolute",
+        id: newIdSK,
+        'margin': '10px',
+
+    }).append(
         jQuery('<div/>', {
+            class: 'card border-dark mb-3',
+            css: {
+                'max-width': '18rem',
+                'padding': '1.25rem'
+
+            }
+        }).append(
+            jQuery('<div/>', {
+                class: 'form-group',
+            }).append(jQuery('<textarea/>', {
+                class: 'form-control',
+                id: 'menuName-' + newIdSK,
+                rows: 1,
+                placeholder: "Cтатические слова",
+                css: {
+                    resize: "none"
+                }
+            })),
+            jQuery('<div/>', {
+                class: 'up_bar_outside',
+                align: 'left'
+            }).append(jQuery('<div/>', {
+                    class: 'button_close_outside',
+                }).append(jQuery('<button/>', {
+                    type: 'button',
+                    class: 'close',
+                    'aria-label': 'Close',
+                    id: 'remove-' + newIdSK
+
+                }).append(jQuery('<span/>', {'aria-hidden': true, text: '×'}))),
+                jQuery('<div/>', {
+                    class: 'number_button',
+                    align: 'left'
+
+                }).append(
+                    jQuery('<button/>', {
+                        class: 'btn btn-outline-danger',
+                        type: 'button',
+                        id: 'shluz-' + newIdSK
+                    })
+                )),
+            jQuery('<div/>', {
+                class: 'card-body text-dark',
+                id: 'Prosto-block-4tobi-porasivee-bilo'
+
+            }),
+
+            jQuery('<div/>', {
+                class: "card border-dark mb-3",
+                'maxWidth': '16rem',
+            }).append(jQuery('<div/>', {
+                    class: 'bnt',
+                    align: 'right',
+                    position: 'right'
+                }),
+                //////////////////////////
+
+                jQuery('<div/>', {
+                    class: 'header',
+                    id: 'ContainerStaticWords',
+                    align: 'center',
+                }).append(
+                    jQuery("<div/>", {
+                        class: "add_button_outside",
+                        align: "center"
+
+                    }).append(jQuery("<button/>", {
+                        type: "button",
+                        class: "btn btn-success",
+                        "aria-haspopup": "true",
+                        "aria-hidden": "true",
+                        text: "+",
+                        id: 'addItemMenu-' + newIdSK
+                    })),
+
+                )
+            ),
+        )
+    ))
+}
+/**
+ ////////////////////////////////////////////////////////////////////////
+ //              **** Подменю статических слов****                    //
+ ////////////////////////////////////////////////////////////////////////
+ */
+function addBlockStaticWords(jQueryId,newIdSK) {
+    $(jQueryId).append(jQuery('<div/>', {
+            id:'Block-StaticWord'+newIdSK,
+            align: 'center'
+
+        }).append(jQuery('<div/>', {
+            class: 'button_close_inside',
+            align: 'right',
+        }).append(jQuery('<button/>', {
+            type: 'button',
+            class: 'close',
+            id:'remove-'+newIdSK,
+            position: 'right',
+            'aria-label': 'Close'
+        }).append(jQuery('<span/>', {'aria-hidden': true, text: '×'}))).append(jQuery('<input/>', {
+            class: "form-control",
+            name: "menu_name",
+            id: "item-"+newIdSK,
+            type: "text",
+            placeholder: "Слово"
+        })),(jQuery('<div/>', {
             class: 'number_button',
             align: 'right',
         }).append(jQuery('<button/>', {
@@ -288,38 +391,9 @@ function addItemInMenuKey(jQueryId,newIdK) {
             "aria-haspopup": "true",
             "aria-hidden": "true",
             text: "+",
-            id : "addArrowBTN-"+newIdK
-        })),
-        jQuery("<div/>",{
-            class:"add_button_outside",
-            align:"center"
-
-        }).append(jQuery("<button/>",{
-            type: "button",
-            class: "btn btn-success",
-            "aria-haspopup": "true",
-            "aria-hidden": "true",
-            text: "+",
-            id : "addArrowBTN-"+newIdK
-        })),
-    )))}
-function AddkeyWords(jQueryId,newIdK) {
-   $(jQueryId).append()
+            id : "Row-StaticWord-"+newIdSK
+        })))
+        ),
+    )
 }
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-// jQuery('<div/>', {
-//     class: 'button_close_outside',
-// }).append(jQuery('<button/>', {
-//         type: 'button',
-//         class: 'btn btn-outline-danger',
-//     },
-// jQuery('<div/>', {
-//     class: 'button_close_outside',
-// }).append(jQuery('<button/>', {
-//     type: 'button',
-//         class: 'btn btn-outline-danger',
-//     },
-//     jQuery('<div/>', {
-//         class: 'card-body text-dark',
-//     }),
+
