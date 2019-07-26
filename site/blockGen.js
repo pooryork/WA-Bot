@@ -3,12 +3,14 @@
  //              **** Добавление main block****                        //
  ////////////////////////////////////////////////////////////////////////
  */
-function addBlockMenu(jQueryId, newId) {
+function addBlockMenu(jQueryId, newId,x=0,y=90) {
     $(jQueryId).append(jQuery('<div/>', {
         class: 'drag col-md-4',
         css: {
             "z-index": "10",
             "position": "absolute",
+            "left":x,
+            "top":y,
             "max-width": "20rem",
             'margin': '10px'
         },
@@ -150,7 +152,7 @@ function addItemInMenu(jQueryId, newId) {
  //              **** Добавление ключевого меню****                    //
  ////////////////////////////////////////////////////////////////////////
  */
-function addBlockMenuKey(jQueryId, newIdK) {
+function addBlockMenuKey(jQueryId, newIdK,x=0,y=90) {
     $(jQueryId).append(jQuery('<div/>', {
 
         class: 'drag col-md-4',
@@ -254,7 +256,7 @@ function addSubMenuKeyWord(jQueryId, newIdSmK) {
         }).append(jQuery('<span/>', {'aria-hidden': true, text: '×'}))),
         //////////////////////////////////////////////////////////////////////////
         jQuery('<div/>', {
-            class: 'header',
+            class: 'header_key',
             id: 'ContainerKeyWords-' + newIdSmK,
             align: 'center'
         }).append(jQuery("<button/>", {
@@ -332,7 +334,7 @@ function addWordKey(jQueryId, newIdK) {
  //              **** Добавление статических слов****                  //
  ////////////////////////////////////////////////////////////////////////
  */
-function addBlockMenuStaticKey(jQueryId, newIdSK) {
+function addBlockMenuStaticKey(jQueryId, newIdSK,x=0,y=90) {
     $(jQueryId).append(jQuery('<div/>', {
         class: 'drag col-md-4',
         css: {

@@ -3,11 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/main.css">
-    <!--  <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>-->
-    <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->
-    <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>-->
-    <!--  <script type="text/javascript" src="jquery.jsPlumb-1.0.1-min.js "></script>-->
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -289,6 +285,7 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src='ShowLS.js' type='text/javascript'></script>
 <script src='blockGen.js' type='text/javascript'></script>
 <script type='text/javascript'>
     ////////canvas//////////
@@ -301,27 +298,34 @@
     // canvas.style.position = "absolute";
     // canvas.style.border   = "1px solid";
     // div.appendChild(canvas);
+//window.onload = function f(e) {
+        
 
-    let blockCount = -1;
-    let docking = '';
-    let count = 0;
-    let countMenuItem = 0;
-    let countMenuItemKey = 0;
-    var gg;
-    let isClicked = 0;
-    let number = 0;
-    let countOfDeleted = 0;
+    let
+        docking = '',
+        count = 0,
+        countMenuItem = 0,
+        countMenuItemKey = 0,
+        isClicked = 0,
+        number = 0,
+        countOfDeleted = 0;
 
 
-    var coutMainBlocks=0;
-    var coutSubMenu_MainBlock=0;
-    var coutSubMenuKeyWord=0;
-    var coutKeyWord=0;
-    var amountStaticWord=0;
+    var coutMainBlocks = 0,
+        coutSubMenu_MainBlock = 0,
+        countKeyWord_Block = 0,
+        amountSubMenuKeyword=0,
+        coutSubMenuKeyWord = 0,
+        blockCount = -1,
+        coutKeyWord = 0,
+        amountStaticWord = 0,
+        JSONinfo,
+        gg,
+        countStaticBlock = 0;
 
-    var info = {
+    let info = {
         MainBlocks: {
-            Main_block_count:coutMainBlocks,
+            Main_block_count: coutMainBlocks,
             // MainBlock_number: {
             //     Name_Menu: "MenuName",
             //     SubMenu_count: coutSubMenu_MainBlock,
@@ -333,7 +337,9 @@
         },
 
         KeyWordBlocks: {
-            Title_Keywords_Block:"",
+            KeyWord_Block_count: countKeyWord_Block,
+            SubMenuKeyword_count:amountSubMenuKeyword,
+            Title_Keywords_Block: "",
             //SubMenuKeyWord_count: coutSubMenuKeyWord,
             // SubMenu_KeyWordBlock_number: {
             //     KeyWord: "Word",
@@ -341,88 +347,128 @@
         },
 
         StaticWordBlocks: {
-            Title_StaticWordBlocks:"",
-                SubMenuStaticWord:{
-            //     StaticWord:"Word"
+            Static_Blocks_count: countStaticBlock,
+            Title_StaticWordBlocks: "",
+            SubMenuStaticWord: {
+                StaticWord_count: amountStaticWord,
+                //     StaticWord:"Word"
             },
         }
 
     };
+    let save_1= {
+        MainBlocks: {
+            Main_block_count: coutMainBlocks,
+        },
 
+        KeyWordBlocks: {
+            KeyWord_Block_count: countKeyWord_Block,
+            SubMenuKeyword_count:amountSubMenuKeyword,
+            Title_Keywords_Block: "",
 
+        },
 
+        StaticWordBlocks: {
+            Static_Blocks_count: countStaticBlock,
+            Title_StaticWordBlocks: "",
+            SubMenuStaticWord: {
+                StaticWord_count: amountStaticWord,
+
+            },
+        }
+    };
     // Это просто ахуенно!
-    $(`#Save__config`).click(function (){
-        // let coutMainBlocks=0;
-        // let coutSubMenu_MainBlock=0;
-        let i=0;
-        if (blockCount>=0){
 
-            $.each($('.main_menu'), function (index,value) {
-                coutMainBlocks+=1;
+    $(`#Save__config`).click(function () {
+        info = JSON.parse(JSON.stringify(save_1));
+        let i = 0;
+        if (blockCount >= 0) {
 
-               info.MainBlocks["MainBlock_" + index ]={Title_Menu: $(this).val(),Position:$(`#blockMenu-${index}`).position()};
+            $.each($('.main_menu'), function (index, value) {
+                coutMainBlocks += 1;
+                console.log(1);
+                info.MainBlocks["MainBlock_" + index] = {
+                    Title_Menu: $(this).val(),
+                    Position: $(`#blockMenu-${index}`).position()
+                };
 
 
-               console.log(index + ':' + $(`#menuName-blockMenu-${index}`).val());
+                console.log(index + ':' + $(`#menuName-blockMenu-${index}`).val());
                 $('input', $(`#containerMenu-blockMenu-${index}`)).each(function () {
-                    coutSubMenu_MainBlock+=1;
+                    coutSubMenu_MainBlock += 1;
 
-                    let temp={};
-                    temp["SubMenu_MainBlock_"+i]={Title_SubMenu: $(this).val()};
-                    Object.assign(info.MainBlocks["MainBlock_" + index],temp);// <------FIX
-                   // temp.SubMenu_count=coutSubMenu_MainBlock;
-                    //temp.SubMenu_count=coutSubMenu_MainBlock;
-
-                   // info.MainBlocks["MainBlock_" + index]={SubMenu_count:coutSubMenu_MainBlock};
-                    i+=1;
+                    let temp = {};
+                    temp["SubMenu_MainBlock_" + i] = {Title_SubMenu: $(this).val()};
+                    Object.assign(info.MainBlocks["MainBlock_" + index], temp);// <------FIX
+                    i += 1;
 
                 });
-                let temp={SubMenu_count:coutSubMenu_MainBlock};
-                Object.assign(info.MainBlocks["MainBlock_" + index],temp);
-                coutSubMenu_MainBlock=0;
-                i=0;
+                let temp = {SubMenu_count: coutSubMenu_MainBlock};
+                Object.assign(info.MainBlocks["MainBlock_" + index], temp);
+                coutSubMenu_MainBlock = 0;
+                i = 0;
 
             });
-            info.MainBlocks.Main_block_count=coutMainBlocks;
-
+            info.MainBlocks.Main_block_count = coutMainBlocks;
+            coutMainBlocks = 0;
         }
 
-        if (maxKeyWordsBlock===0){
-            info.KeyWordBlocks.Title_Keywords_Block=$('#menuName-blockMenuKey-0').val();
-            info.KeyWordBlocks.Position=$(`#blockMenuKey-0`).position();
-            if(countSubMenuKeyWord > 0){
-                $.each($('.header'), function (index, value){
-                    coutSubMenuKeyWord+=1;
-                    info.KeyWordBlocks["SubMenu_KeyWordBlock_"+index]={};
-                    $('input',$(`#ContainerKeyWords-SubMenuKeyWords-${index}`)).each(function () {
+        if (maxKeyWordsBlock === 0) {
 
-                        coutKeyWord+=1;
-                        let word= $(this).val();
-                        let temp={};
-                        temp["KeyWord_"+i]=word;
-                        Object.assign(info.KeyWordBlocks["SubMenu_KeyWordBlock_"+index],temp);
-                        i+=1;
+            info.KeyWordBlocks.Title_Keywords_Block = $('#menuName-blockMenuKey-0').val();
+            info.KeyWordBlocks.Position = $(`#blockMenuKey-0`).position();
+            if (countSubMenuKeyWord >= 0) {
+                countKeyWord_Block +=1;
+
+                $.each($('.header_key'), function (index, value) {
+                    amountSubMenuKeyword+=1;
+                    let realID=this.id.split('-')[2];
+
+                    info.KeyWordBlocks["SubMenu_KeyWordBlock_" + index] = {};
+                    $('input', $(`#ContainerKeyWords-SubMenuKeyWords-${realID}`)).each(function () {
+
+                        coutKeyWord += 1;
+                        let word = $(this).val();
+                        gg=word;
+                        let temp = {};
+                        temp["KeyWord_" + i] = word;
+                        Object.assign(info.KeyWordBlocks["SubMenu_KeyWordBlock_" + index], temp);
+                        i += 1;
 
                     });
-                    i=0;
+                    let temp = {};
+                    temp["count_KeyWordThisBlock"]=coutKeyWord;
+                    Object.assign(info.KeyWordBlocks["SubMenu_KeyWordBlock_" + index],temp);
+                    coutKeyWord=0;
+                    info.KeyWordBlocks.KeyWord_Block_count = countKeyWord_Block;
+                    i = 0;
                 });
-
+                info.KeyWordBlocks.SubMenuKeyword_count=amountSubMenuKeyword;
+                amountSubMenuKeyword=0;
+                countKeyWord_Block = 0;
             }
         }
-        if(maxStaticWordsBlock===0){
-            i=0;
-            info.StaticWordBlocks.Position=$(`#blockMenuStatic-0`).position();
+        if (maxStaticWordsBlock === 0) {
+            countStaticBlock += 1;
+            i = 0;
+            info.StaticWordBlocks.Position = $(`#blockMenuStatic-0`).position();
             info.StaticWordBlocks.Title_StaticWordBlocks = $('#menuName-blockMenuStatic-0').val();
-            if(countStaticWord>=0){
-                amountStaticWord+=1;
-                $('input',$(`#ContainerStaticWords`)).each(function(index){
-                    let word = $(this).val();
-                    info.StaticWordBlocks.SubMenuStaticWord['StaticWord_'+index]=word;
-                });
-            }
-        }
+            if (countStaticWord >= 0) {
+                info.StaticWordBlocks.Static_Blocks_count = countStaticBlock;
 
+                $('input', $(`#ContainerStaticWords`)).each(function (index) {
+                    amountStaticWord += 1;
+                    let word = $(this).val();
+                    info.StaticWordBlocks.SubMenuStaticWord['StaticWord_' + index] = word;
+                });
+                info.StaticWordBlocks.SubMenuStaticWord.StaticWord_count = amountStaticWord;
+            }
+            amountStaticWord = 0;
+        }
+        countStaticBlock = 0;
+
+        JSONinfo=JSON.stringify(info);
+        localStorage.setItem("config",JSONinfo);
     });
 
     function addBlock() {
@@ -469,7 +515,7 @@
         });
 
         $(`#remove-blockMenu-${newId}`).click(function (e) {
-            blockCount -= 1;
+
             countOfDeleted += 1;
             console.log('blockCount remove', blockCount);
             console.log('countMenuItem remove', countMenuItem);
@@ -537,7 +583,7 @@
      //              **** Добавление меню ключевых слов****                //
      ////////////////////////////////////////////////////////////////////////
      */
-    //let blockCountKey=0; выпилил и заменил ,1, т.к блок всегда один
+        //let blockCountKey=0; выпилил и заменил ,1, т.к блок всегда один
     let countOfDeletedKey = 0;
     let countKeyword = -1; //Ключевые слова
     let countSubMenuKeyWord = -1;
@@ -569,28 +615,28 @@
 
 
             $(`#addKeyWord-SubMenuKeyWords-${countSubMenuKeyWord}`).click(function (e) {
-            let numID = e.currentTarget.id.split('-')[2];
-            console.log(numID);
-            countKeyword += 1;
-            addWordKey('#ContainerKeyWords-SubMenuKeyWords-' + numID, 'KeyWords-' + countKeyword);
-            console.log('KeyWords add', countSubMenuKeyWord);
-
-
-            $(`#remove-KeyWords-${countKeyword}`).click(function (e) {
                 let numID = e.currentTarget.id.split('-')[2];
-                countKeyword -= 1;
-                console.log('KeyWords remove', numID);
-                e.currentTarget.parentElement.parentElement.remove();
+                console.log(numID);
+                countKeyword += 1;
+                addWordKey('#ContainerKeyWords-SubMenuKeyWords-' + numID, 'KeyWords-' + countKeyword);
+                console.log('KeyWords add', countSubMenuKeyWord);
 
 
-            });
+                $(`#remove-KeyWords-${countKeyword}`).click(function (e) {
+                    let numID = e.currentTarget.id.split('-')[2];
+                    countKeyword -= 1;
+                    console.log('KeyWords remove', numID);
+                    e.currentTarget.parentElement.parentElement.remove();
+
+
+                });
             });
             $(`#remove-SubMenuKeyWords-${countSubMenuKeyWord}`).click(function (e) {
                 let numID = e.currentTarget.id.split('-')[2];
                 countSubMenuKeyWord -= 1;
                 console.log('KeyWords remove', numID);
                 e.currentTarget.parentElement.parentElement.parentElement.parentElement.remove();
-                countSubMenuKeyWord -= 1;
+
 
             });
 
@@ -783,6 +829,77 @@
         //
         // });
     }
+
+    function show() {
+
+        let JSONparse=JSON.parse(localStorage.getItem("config"));
+        let countMainBlock=JSONparse.MainBlocks.Main_block_count;
+
+
+        addBlock_show();
+
+        function addBlock_show(){
+            for (let index =0;index<countMainBlock;index++) {
+                let Maninblock_X=JSONparse.MainBlocks["MainBlock_" + index].Position["left"];
+                let Maninblock_Y=JSONparse.MainBlocks["MainBlock_" + index].Position["top"];
+                const newId=index;
+                const newIDSubmenu=JSONparse.MainBlocks["MainBlock_" + newId].SubMenu_count;
+                blockCount+=1;
+                addBlockMenu("#main","blockMenu-"+newId,Maninblock_X,Maninblock_Y);
+
+                //вешаем на него двежение и перерисовку стрелок
+                $(`#blockMenu-${newId}`).draggable({
+                    containment: "#main",
+                    scroll: false,
+                });
+                for (let Jindex=0;Jindex<newIDSubmenu;Jindex++){
+                    countMenuItem += 1;
+                    addItemInMenu('#containerMenu-blockMenu-' + newId, 'menuItem-' + countMenuItem);
+                    $(`#remove-menuItem-${countMenuItem}`).click(function (e) {
+                        countMenuItem -= 1;
+                        console.log('countMenuItem remove', countMenuItem);
+                        e.currentTarget.parentElement.parentElement.parentElement.remove();
+                    });
+
+
+                }
+                $(`#addItemMenu-blockMenu-${newId}`).click(function (e) {
+
+                    let num = e.currentTarget.id.split('-')[2];
+                    countMenuItem += 1;
+                    console.log('countMenuItem', countMenuItem);
+                    isClicked = 0;
+
+
+                    addItemInMenu('#containerMenu-blockMenu-' + num, 'menuItem-' + countMenuItem);
+
+                    $(`#remove-menuItem-${countMenuItem}`).click(function (e) {
+                        countMenuItem -= 1;
+                        console.log('countMenuItem remove', countMenuItem);
+                        e.currentTarget.parentElement.parentElement.parentElement.remove();
+                    });
+
+                    ///Вешаем обработчик возможно пристыкавываетля
+                    $(`#addArrowBTN-menuItem-${countMenuItem}`).click(function (e) {
+                        docking = e.currentTarget.id;
+                    });
+                });
+
+                $(`#remove-blockMenu-${newId}`).click(function (e) {
+
+                    countOfDeleted += 1;
+                    console.log('blockCount remove', blockCount);
+                    console.log('countMenuItem remove', countMenuItem);
+                    e.currentTarget.parentElement.parentElement.parentElement.parentElement.remove();
+                });
+            }
+        }
+    }
+    show();
+
+
+
+//}
 
 </script>
 </div>
