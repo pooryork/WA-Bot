@@ -502,7 +502,7 @@
             addItemInMenu('#containerMenu-blockMenu-' + num, 'menuItem-' + countMenuItem);
 
             $(`#remove-menuItem-${countMenuItem}`).click(function (e) {
-                countMenuItem -= 1;
+
                 console.log('countMenuItem remove', countMenuItem);
                 e.currentTarget.parentElement.parentElement.parentElement.remove();
             });
@@ -856,7 +856,7 @@
                     countMenuItem += 1;
                     addItemInMenu('#containerMenu-blockMenu-' + newId, 'menuItem-' + countMenuItem);
                     $(`#remove-menuItem-${countMenuItem}`).click(function (e) {
-                        countMenuItem -= 1;
+
                         console.log('countMenuItem remove', countMenuItem);
                         e.currentTarget.parentElement.parentElement.parentElement.remove();
                     });
@@ -874,7 +874,7 @@
                     addItemInMenu('#containerMenu-blockMenu-' + num, 'menuItem-' + countMenuItem);
 
                     $(`#remove-menuItem-${countMenuItem}`).click(function (e) {
-                        countMenuItem -= 1;
+
                         console.log('countMenuItem remove', countMenuItem);
                         e.currentTarget.parentElement.parentElement.parentElement.remove();
                     });
