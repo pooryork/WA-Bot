@@ -158,6 +158,8 @@ function addBlockMenuKey(jQueryId, newIdK,x=0,y=90) {
         class: 'drag col-md-4',
         id: newIdK,
         css: {
+            "left":x,
+            "top":y,
             "max-width": "20em",
             "z-index": "10",
             "position": "absolute",

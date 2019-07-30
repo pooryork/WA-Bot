@@ -315,7 +315,7 @@
         coutSubMenu_MainBlock = 0,
         countKeyWord_Block = 0,
         amountSubMenuKeyword=0,
-        coutSubMenuKeyWord = 0,
+        countSubMenuKeyWord = -1,
         blockCount = -1,
         coutKeyWord = 0,
         amountStaticWord = 0,
@@ -414,7 +414,7 @@
         }
 
         if (maxKeyWordsBlock === 0) {
-
+            info.KeyWordBlocks.KeyWord_Block_count=1;
             info.KeyWordBlocks.Title_Keywords_Block = $('#menuName-blockMenuKey-0').val();
             info.KeyWordBlocks.Position = $(`#blockMenuKey-0`).position();
             if (countSubMenuKeyWord >= 0) {
@@ -586,9 +586,9 @@
         //let blockCountKey=0; выпилил и заменил ,1, т.к блок всегда один
     let countOfDeletedKey = 0;
     let countKeyword = -1; //Ключевые слова
-    let countSubMenuKeyWord = -1;
+   // let countSubMenuKeyWord = -1;
     let blockCountKey = 0;
-    var maxKeyWordsBlock = -1;
+    let maxKeyWordsBlock = -1;
 
     function addBlockKeyWords() {
 
@@ -608,7 +608,6 @@
 
 
         $(`#addItemMenu-blockMenuKey-${0}`).click(function (e) {
-            console.log('countKeyword', countKeyword);
             countSubMenuKeyWord += 1;
             addSubMenuKeyWord('#ContainerSubMenuKeyWord', 'SubMenuKeyWords-' + countSubMenuKeyWord);
             console.log('countSubMenuKeyWord', countSubMenuKeyWord);
@@ -624,7 +623,7 @@
 
                 $(`#remove-KeyWords-${countKeyword}`).click(function (e) {
                     let numID = e.currentTarget.id.split('-')[2];
-                    countKeyword -= 1;
+
                     console.log('KeyWords remove', numID);
                     e.currentTarget.parentElement.parentElement.remove();
 
@@ -633,7 +632,7 @@
             });
             $(`#remove-SubMenuKeyWords-${countSubMenuKeyWord}`).click(function (e) {
                 let numID = e.currentTarget.id.split('-')[2];
-                countSubMenuKeyWord -= 1;
+
                 console.log('KeyWords remove', numID);
                 e.currentTarget.parentElement.parentElement.parentElement.parentElement.remove();
 
@@ -653,7 +652,7 @@
         });
 
         $(`#remove-blockMenuKey-${0}`).click(function (e) {
-            maxKeyWordsBlock = 0;
+            maxKeyWordsBlock = -1;
             countOfDeletedKey += 1;
             console.log('blockCountKey remove', 0);
             e.currentTarget.parentElement.parentElement.parentElement.parentElement.remove();
@@ -829,30 +828,26 @@
         //
         // });
     }
-
-    function show() {
-
+    $(document).ready(function(){
         let JSONparse=JSON.parse(localStorage.getItem("config"));
-        let countMainBlock=JSONparse.MainBlocks.Main_block_count;
 
 
-        addBlock_show();
 
-        function addBlock_show(){
+            let countMainBlock=JSONparse.MainBlocks.Main_block_count;
             for (let index =0;index<countMainBlock;index++) {
-                let Maninblock_X=JSONparse.MainBlocks["MainBlock_" + index].Position["left"];
-                let Maninblock_Y=JSONparse.MainBlocks["MainBlock_" + index].Position["top"];
+                let MainBlock_X=JSONparse.MainBlocks["MainBlock_" + index].Position["left"];
+                let MainBlock_Y=JSONparse.MainBlocks["MainBlock_" + index].Position["top"];
                 const newId=index;
                 const newIDSubmenu=JSONparse.MainBlocks["MainBlock_" + newId].SubMenu_count;
                 blockCount+=1;
-                addBlockMenu("#main","blockMenu-"+newId,Maninblock_X,Maninblock_Y);
+                addBlockMenu("#main","blockMenu-"+newId,MainBlock_X,MainBlock_Y);
 
                 //вешаем на него двежение и перерисовку стрелок
                 $(`#blockMenu-${newId}`).draggable({
                     containment: "#main",
                     scroll: false,
                 });
-                for (let Jindex=0;Jindex<newIDSubmenu;Jindex++){
+                for (let j=0;j < newIDSubmenu;j++){
                     countMenuItem += 1;
                     addItemInMenu('#containerMenu-blockMenu-' + newId, 'menuItem-' + countMenuItem);
                     $(`#remove-menuItem-${countMenuItem}`).click(function (e) {
@@ -893,13 +888,115 @@
                     e.currentTarget.parentElement.parentElement.parentElement.parentElement.remove();
                 });
             }
+
+
+        let KeyBlock_X = JSONparse.KeyWordBlocks.Position["left"];
+        let KeyBlock_Y = JSONparse.KeyWordBlocks.Position["top"];
+        const newId = 0;
+        const newIDSubmenu = JSONparse.KeyWordBlocks.SubMenuKeyword_count;
+        if (JSONparse.KeyWordBlocks.KeyWord_Block_count == 1) {
+            console.log('this', newIDSubmenu);
+            console.log('blockCountKey', 0);
+            maxKeyWordsBlock = 0;
+            addBlockMenuKey("#main", "blockMenuKey-" + 0, KeyBlock_X, KeyBlock_Y);
+            //вешаем на него двежение
+            $(`#blockMenuKey-${0}`).draggable({
+                containment: "#main",
+                scroll: false,
+            });
+            $(`#remove-blockMenuKey-${0}`).click(function (e) {
+                maxKeyWordsBlock = -1;
+                countOfDeletedKey += 1;
+                console.log('blockCountKey remove', 0);
+                e.currentTarget.parentElement.parentElement.parentElement.parentElement.remove();
+            });
         }
-    }
-    show();
+        $(`#addItemMenu-blockMenuKey-${0}`).click(function (e) {
+            countSubMenuKeyWord += 1;
+            addSubMenuKeyWord('#ContainerSubMenuKeyWord', 'SubMenuKeyWords-' + countSubMenuKeyWord);
+            console.log('countSubMenuKeyWord', countSubMenuKeyWord);
 
 
+            $(`#addKeyWord-SubMenuKeyWords-${countSubMenuKeyWord}`).click(function (e) {
+                let numID = e.currentTarget.id.split('-')[2];
+                console.log(numID);
+                countKeyword += 1;
+                addWordKey('#ContainerKeyWords-SubMenuKeyWords-' + numID, 'KeyWords-' + countKeyword);
+                console.log('KeyWords add', countSubMenuKeyWord);
 
-//}
+
+                $(`#remove-KeyWords-${countKeyword}`).click(function (e) {
+                    let numID = e.currentTarget.id.split('-')[2];
+                    console.log('KeyWords remove', numID);
+                    e.currentTarget.parentElement.parentElement.remove();
+
+
+                });
+            });
+            $(`#remove-SubMenuKeyWords-${countSubMenuKeyWord}`).click(function (e) {
+                let numID = e.currentTarget.id.split('-')[2];
+                console.log('KeyWords remove', numID);
+                e.currentTarget.parentElement.parentElement.parentElement.parentElement.remove();
+
+
+            });
+
+            // ///Вешаем обработчик возможно пристыкавываетля
+            // $(`#addArrowBTN-menuItem-${countKeyword}`).click(function (e) {
+            //     docking = e.currentTarget.id;
+            // });
+
+        });
+
+        //Вешаем обработчик возможно пристыкавываетля
+        $(`#addArrowBTN-menuItemKey-${countMenuItemKey}`).click(function (e) {
+            docking = e.currentTarget.id;
+        });
+        for (let i = 0; i < newIDSubmenu; i++) {
+            console.log("this");
+            let index = i;
+            countSubMenuKeyWord += 1;
+            addSubMenuKeyWord('#ContainerSubMenuKeyWord', 'SubMenuKeyWords-' + index);
+            $(`#addKeyWord-SubMenuKeyWords-${countSubMenuKeyWord}`).click(function (e) {
+                let numID = e.currentTarget.id.split('-')[2];
+                console.log(numID);
+                countKeyword += 1;
+                addWordKey('#ContainerKeyWords-SubMenuKeyWords-' + numID, 'KeyWords-' + countKeyword);
+                console.log('KeyWords add', countSubMenuKeyWord);
+
+                $(`#remove-KeyWords-${countKeyword}`).click(function (e) {
+                    let numID = e.currentTarget.id.split('-')[2];
+
+                    console.log('KeyWords remove', numID);
+                    e.currentTarget.parentElement.parentElement.remove();
+
+
+                });
+            });
+            $(`#remove-SubMenuKeyWords-${countSubMenuKeyWord}`).click(function (e) {
+                let numID = e.currentTarget.id.split('-')[2];
+
+                console.log('KeyWords remove', numID);
+                e.currentTarget.parentElement.parentElement.parentElement.parentElement.remove();
+
+
+            });
+            let KeyWordsCount = JSONparse.KeyWordBlocks["SubMenu_KeyWordBlock_" + index].count_KeyWordThisBlock;
+            for (let j = 0; j < KeyWordsCount; j++) {
+                countKeyword += 1;
+                addWordKey('#ContainerKeyWords-SubMenuKeyWords-' + countSubMenuKeyWord, 'KeyWords-' + countKeyword);
+                $(`#remove-KeyWords-${countKeyword}`).click(function (e) {
+                    let numID = e.currentTarget.id.split('-')[2];
+
+                    console.log('KeyWords remove', numID);
+                    e.currentTarget.parentElement.parentElement.remove();
+
+
+                });
+            }
+        }
+
+    });
 
 </script>
 </div>
