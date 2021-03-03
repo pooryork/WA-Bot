@@ -22,7 +22,7 @@
     "navit": "^3.1.0",
     "node-libcurl": "^1.3.3",
     "password-hash": "^1.2.2",
-    "pug": "2.0.0-beta11",
+    "pug": "3.0.1",
     "request": "^2.88.0",
     "sync-mysql": "^3.0.1",
     "synchronize-helpers": "^0.1.0",
